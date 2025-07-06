@@ -1,3 +1,7 @@
+// Global Variables
+let humanScore = 0;
+let computerScore = 0;
+
 // Get Computer Choice
 function getComputerChoice() {
     let computerChoice;
