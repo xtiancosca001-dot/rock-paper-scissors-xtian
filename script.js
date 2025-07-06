@@ -24,3 +24,10 @@ function getHumanChoice() {
     humanChoice = prompt('Enter your choice (rock, paper, scissors only): ');
     return humanChoice;
 }
+
+// Play a single round
+function playRound(humanChoice, computerChoice) {
+    // Make choices case-insensitive
+    humanChoice = humanChoice.toLowerCase();
+    computerChoice = computerChoice.toLowerCase();
+}
