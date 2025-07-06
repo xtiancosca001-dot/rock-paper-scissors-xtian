@@ -44,12 +44,12 @@ function playRound(humanChoice, computerChoice) {
         }
     } else if(humanChoice === 'paper') {
         if(computerChoice === 'rock') {
-            console.log('You win! Paper beats Rock');
+            console.log('You Win! Paper beats Rock');
             humanScore++;
         } else if(computerChoice === 'paper') {
             console.log('DRAW!');
         } else if(computerChoice === 'scissors') {
-            console.log('You Lose! Scissors beat Paper');
+            console.log('You Lose! Scissors beats Paper');
             computerScore++;
         }
     } else if(humanChoice === 'scissors') {
