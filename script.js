@@ -77,12 +77,23 @@ function rockPaperScissorsGame(roundNumber) {
     console.log('===========\n');
 }
 
+function displayGameResult(humanScore, cpuScore) {
+    if(humanScore === cpuScore) {
+        console.log('The Game is a DRAW!');
+    } else if(humanScore < cpuScore) {
+        console.log('Computer Wins the game!');
+    } else {
+        console.log('Congrats! You win the game!');
+    }
+}
+
 function playGame() {
     rockPaperScissorsGame(1);
     rockPaperScissorsGame(2);
     rockPaperScissorsGame(3);
     rockPaperScissorsGame(4);
     rockPaperScissorsGame(5);
+    displayGameResult(humanScore, computerScore);
 }
 
 playGame();
