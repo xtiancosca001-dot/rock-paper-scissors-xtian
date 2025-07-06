@@ -53,7 +53,15 @@ function playRound(humanChoice, computerChoice) {
             computerScore++;
         }
     } else if(humanChoice === 'scissors') {
-
+        if(computerChoice === 'rock') {
+            console.log('You Lose! Rock beats Scissors');
+            computerScore++;
+        } else if(computerChoice === 'paper') {
+            console.log('You Win! Scissors beats Paper');
+            humanScore++;
+        } else if(computerChoice === 'scissors') {
+            console.log('DRAW!');
+        }
     }
 }
 
