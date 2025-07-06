@@ -65,16 +65,20 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-const humanChoice = getHumanChoice();
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
 
-console.log(`${humanChoice} VS rock`);
-playRound(humanChoice, 'rock' );
-console.log(`Human: ${humanScore}, CPU: ${computerScore}`);
+function playGame() {
+    console.log('==ROUND 1==');
+    console.log(`${humanSelection} VS ${computerSelection}`);
+    playRound(humanSelection, computerSelection);
+    console.log(`SCORE - Human: ${humanScore} | CPU: ${computerScore}`);
+    console.log('===========');
+    console.log('==ROUND 2==');
+    console.log(`${humanSelection} VS ${computerSelection}`);
+    playRound(humanSelection, computerSelection);
+    console.log(`SCORE - Human: ${humanScore} | CPU: ${computerScore}`);
+    console.log('===========');
+}
 
-console.log(`${humanChoice} VS paper`);
-playRound(humanChoice, 'paper' );
-console.log(`Human: ${humanScore}, CPU: ${computerScore}`);
-
-console.log(`${humanChoice} VS scissors`);
-playRound(humanChoice, 'scissors' );
-console.log(`Human: ${humanScore}, CPU: ${computerScore}`);
+playGame();
