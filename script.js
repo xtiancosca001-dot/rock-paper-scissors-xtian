@@ -30,4 +30,35 @@ function playRound(humanChoice, computerChoice) {
     // Make choices case-insensitive
     humanChoice = humanChoice.toLowerCase();
     computerChoice = computerChoice.toLowerCase();
+
+    // Game logic
+    if(humanChoice === 'rock') {
+        if(computerChoice === 'rock') {
+            console.log('DRAW!');
+        } else if(computerChoice === 'paper') {
+            console.log('You Lose! Paper beats Rock');
+            computerScore++;
+        } else if(computerChoice === 'scissors') {
+            console.log('You Win! Rock beats Scissors');
+            humanScore++;
+        }
+    } else if(humanChoice === 'paper') {
+    
+    } else if(humanChoice === 'scissors') {
+
+    }
 }
+
+const humanChoice = getHumanChoice();
+
+console.log(`${humanChoice} VS rock`);
+playRound(humanChoice, 'rock' );
+console.log(`Human: ${humanScore}, CPU: ${computerScore}`);
+
+console.log(`${humanChoice} VS paper`);
+playRound(humanChoice, 'paper' );
+console.log(`Human: ${humanScore}, CPU: ${computerScore}`);
+
+console.log(`${humanChoice} VS scissors`);
+playRound(humanChoice, 'scissors' );
+console.log(`Human: ${humanScore}, CPU: ${computerScore}`);
