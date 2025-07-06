@@ -7,7 +7,6 @@ function getComputerChoice() {
     let computerChoice;
     // Choices: 1 - Rock, 2 - Paper, 3 - Scissors
     const choiceNumber = Math.floor(Math.random() * 3) + 1;
-    console.log(`Choice Number: ${choiceNumber}`);
     if(choiceNumber === 1) {
         computerChoice = 'rock';
     } else if(choiceNumber === 2) {
@@ -65,20 +64,25 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+function rockPaperScissorsGame(roundNumber) {
+    // Get Players' Choices
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+
+    // Play Round
+    console.log(`==ROUND ${roundNumber}==`);
+    console.log(`${humanSelection} VS ${computerSelection}`);
+    playRound(humanSelection, computerSelection);
+    console.log(`SCORE - Human: ${humanScore} | CPU: ${computerScore}`);
+    console.log('===========\n');
+}
 
 function playGame() {
-    console.log('==ROUND 1==');
-    console.log(`${humanSelection} VS ${computerSelection}`);
-    playRound(humanSelection, computerSelection);
-    console.log(`SCORE - Human: ${humanScore} | CPU: ${computerScore}`);
-    console.log('===========');
-    console.log('==ROUND 2==');
-    console.log(`${humanSelection} VS ${computerSelection}`);
-    playRound(humanSelection, computerSelection);
-    console.log(`SCORE - Human: ${humanScore} | CPU: ${computerScore}`);
-    console.log('===========');
+    rockPaperScissorsGame(1);
+    rockPaperScissorsGame(2);
+    rockPaperScissorsGame(3);
+    rockPaperScissorsGame(4);
+    rockPaperScissorsGame(5);
 }
 
 playGame();
