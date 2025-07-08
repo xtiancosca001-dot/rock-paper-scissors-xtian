@@ -28,11 +28,7 @@ function getRoundResults(humanChoice, computerChoice) {
 
 // Play a single round
 function playRound(humanChoice, computerChoice) {
-    humanChoice = humanChoice.toLowerCase();
-    computerChoice = computerChoice.toLowerCase();
     const humanWinsTheRound = getRoundResults(humanChoice, computerChoice);
-
-    // Game logic
     if(humanChoice === computerChoice) {
         console.log('DRAW');
     } else if(humanWinsTheRound) {
@@ -46,15 +42,14 @@ function playRound(humanChoice, computerChoice) {
 
 function rockPaperScissorsGame(roundNumber) {
     // Get Players' Choices
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
+    const humanSelection = getHumanChoice().toLowerCase();
+    const computerSelection = getComputerChoice().toLowerCase();
 
     // Play Round
     console.log(`==ROUND ${roundNumber}==`);
     console.log(`${humanSelection} VS ${computerSelection}`);
     playRound(humanSelection, computerSelection);
     console.log(`SCORE - Human: ${humanScore} | CPU: ${computerScore}`);
-    console.log('===========\n');
 }
 
 function displayGameResult(humanScore, cpuScore) {
