@@ -15,10 +15,8 @@ function getComputerChoice() {
 }
 
 // Get Human Choice
-function getHumanChoice() {
-    let humanChoice;
-    humanChoice = prompt('Enter your choice (rock, paper, scissors only): ');
-    return humanChoice;
+function getHumanChoice() { 
+    return prompt('Enter your choice (rock, paper, scissors only): ');
 }
 
 // Play a single round
