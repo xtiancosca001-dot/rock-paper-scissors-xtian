@@ -19,43 +19,28 @@ function getHumanChoice() {
     return prompt('Enter your choice (rock, paper, scissors only): ');
 }
 
+function getRoundResults(humanChoice, computerChoice) {
+    // Get the positive result when human wins the round
+    return (humanChoice === ROCK) && (computerChoice === SCISSORS) ||
+           (humanChoice === PAPER) && (computerChoice === ROCK) ||
+           (humanChoice === SCISSORS) && (computerChoice === PAPER);
+}
+
 // Play a single round
 function playRound(humanChoice, computerChoice) {
-    // Make choices case-insensitive
     humanChoice = humanChoice.toLowerCase();
     computerChoice = computerChoice.toLowerCase();
+    const humanWinsTheRound = getRoundResults(humanChoice, computerChoice);
 
     // Game logic
-    if(humanChoice === ROCK) {
-        if(computerChoice === ROCK) {
-            console.log('DRAW!');
-        } else if(computerChoice === PAPER) {
-            console.log('You Lose! Paper beats Rock');
-            computerScore++;
-        } else if(computerChoice === SCISSORS) {
-            console.log('You Win! Rock beats Scissors');
-            humanScore++;
-        }
-    } else if(humanChoice === PAPER) {
-        if(computerChoice === ROCK) {
-            console.log('You Win! Paper beats Rock');
-            humanScore++;
-        } else if(computerChoice === PAPER) {
-            console.log('DRAW!');
-        } else if(computerChoice === SCISSORS) {
-            console.log('You Lose! Scissors beats Paper');
-            computerScore++;
-        }
-    } else if(humanChoice === SCISSORS) {
-        if(computerChoice === ROCK) {
-            console.log('You Lose! Rock beats Scissors');
-            computerScore++;
-        } else if(computerChoice === PAPER) {
-            console.log('You Win! Scissors beats Paper');
-            humanScore++;
-        } else if(computerChoice === SCISSORS) {
-            console.log('DRAW!');
-        }
+    if(humanChoice === computerChoice) {
+        console.log('DRAW');
+    } else if(humanWinsTheRound) {
+        console.log(`You Win! ${humanChoice} beats ${computerChoice}`);
+        humanScore++;
+    } else {
+        console.log(`You Lose! ${computerChoice} beats ${humanChoice}`);
+        computerScore++;
     }
 }
 
