@@ -1,11 +1,9 @@
-// Global Variables
 let humanScore = 0;
 let computerScore = 0;
 const ROCK = 'rock';
 const PAPER = 'paper';
 const SCISSORS = 'scissors';
 
-// Get Computer Choice
 function getComputerChoice() {
     // Choices: 1 - Rock, 2 - Paper, 3 - Scissors
     const choiceNumber = Math.floor(Math.random() * 3) + 1;
@@ -14,21 +12,15 @@ function getComputerChoice() {
            SCISSORS;
 }
 
-// Get Human Choice
 function getHumanChoice() { 
     return prompt('Enter your choice (rock, paper, scissors only): ');
 }
 
-function getRoundResults(humanChoice, computerChoice) {
-    // Get the positive result when human wins the round
-    return (humanChoice === ROCK) && (computerChoice === SCISSORS) ||
-           (humanChoice === PAPER) && (computerChoice === ROCK) ||
-           (humanChoice === SCISSORS) && (computerChoice === PAPER);
-}
-
-// Play a single round
 function playRound(humanChoice, computerChoice) {
-    const humanWinsTheRound = getRoundResults(humanChoice, computerChoice);
+    const humanWinsTheRound = (humanChoice === ROCK) && (computerChoice === SCISSORS) ||
+                              (humanChoice === PAPER) && (computerChoice === ROCK) ||
+                              (humanChoice === SCISSORS) && (computerChoice === PAPER);
+
     if(humanChoice === computerChoice) {
         console.log('DRAW');
     } else if(humanWinsTheRound) {
@@ -41,11 +33,9 @@ function playRound(humanChoice, computerChoice) {
 }
 
 function rockPaperScissorsGame(roundNumber) {
-    // Get Players' Choices
     const humanSelection = getHumanChoice().toLowerCase();
     const computerSelection = getComputerChoice().toLowerCase();
 
-    // Play Round
     console.log(`==ROUND ${roundNumber}==`);
     console.log(`${humanSelection} VS ${computerSelection}`);
     playRound(humanSelection, computerSelection);
