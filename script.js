@@ -39,7 +39,7 @@ function playRound(humanChoice, computerChoice) {
 
 function rockPaperScissorsGame(roundNumber) {
     const humanSelection = getHumanChoice().toLowerCase();
-    const computerSelection = getComputerChoice().toLowerCase();
+    const computerSelection = getComputerChoice();
 
     console.log(`==ROUND ${roundNumber}==`);
     console.log(`${humanSelection} VS ${computerSelection}`);
