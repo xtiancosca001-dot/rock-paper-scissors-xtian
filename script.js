@@ -7,17 +7,11 @@ const SCISSORS = 'scissors';
 
 // Get Computer Choice
 function getComputerChoice() {
-    let computerChoice;
     // Choices: 1 - Rock, 2 - Paper, 3 - Scissors
     const choiceNumber = Math.floor(Math.random() * 3) + 1;
-    if(choiceNumber === 1) {
-        computerChoice = ROCK;
-    } else if(choiceNumber === 2) {
-        computerChoice = PAPER;
-    } else {
-        computerChoice = SCISSORS;
-    }
-    return computerChoice;
+    return choiceNumber === 1 ? ROCK : 
+           choiceNumber === 2 ? PAPER : 
+           SCISSORS;
 }
 
 // Get Human Choice
