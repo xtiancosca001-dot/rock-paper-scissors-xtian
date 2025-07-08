@@ -1,12 +1,14 @@
 let humanScore = 0;
 let computerScore = 0;
+const NUM_ROUNDS = 5;
+const NUM_CHOICES = 3;
 const ROCK = 'rock';
 const PAPER = 'paper';
 const SCISSORS = 'scissors';
 
 function getComputerChoice() {
     // Choices: 1 - Rock, 2 - Paper, 3 - Scissors
-    const choiceNumber = Math.floor(Math.random() * 3) + 1;
+    const choiceNumber = Math.floor(Math.random() * NUM_CHOICES) + 1;
     return choiceNumber === 1 ? ROCK : 
            choiceNumber === 2 ? PAPER : 
            SCISSORS;
@@ -16,14 +18,17 @@ function getHumanChoice() {
     return prompt('Enter your choice (rock, paper, scissors only): ');
 }
 
-function playRound(humanChoice, computerChoice) {
-    const humanWinsTheRound = (humanChoice === ROCK) && (computerChoice === SCISSORS) ||
-                              (humanChoice === PAPER) && (computerChoice === ROCK) ||
-                              (humanChoice === SCISSORS) && (computerChoice === PAPER);
+function humanWinsTheRound(humanChoice, computerChoice) {
+    return  (humanChoice === ROCK) && (computerChoice === SCISSORS) ||
+            (humanChoice === PAPER) && (computerChoice === ROCK) ||
+            (humanChoice === SCISSORS) && (computerChoice === PAPER);
+}
 
+function playRound(humanChoice, computerChoice) {
+    const humanWin = humanWinsTheRound(humanChoice, computerChoice);
     if(humanChoice === computerChoice) {
         console.log('DRAW');
-    } else if(humanWinsTheRound) {
+    } else if(humanWin) {
         console.log(`You Win! ${humanChoice} beats ${computerChoice}`);
         humanScore++;
     } else {
@@ -53,7 +58,7 @@ function displayGameResult(humanScore, cpuScore) {
 }
 
 function playGame() {
-    for(let round = 1; round <= 5; round++) {
+    for(let round = 1; round <= NUM_ROUNDS; round++) {
         rockPaperScissorsGame(round);
     }
     console.log('========');
