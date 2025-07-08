@@ -49,7 +49,7 @@ function rockPaperScissorsGame(roundNumber) {
     console.log(`==ROUND ${roundNumber}==`);
     console.log(`${humanSelection} VS ${computerSelection}`);
     playRound(humanSelection, computerSelection);
-    console.log(`SCORE - Human: ${humanScore} | CPU: ${computerScore}`);
+    console.log(`SCORE (R${roundNumber}) - Human: ${humanScore} | CPU: ${computerScore}`);
 }
 
 function displayGameResult(humanScore, cpuScore) {
@@ -63,12 +63,12 @@ function displayGameResult(humanScore, cpuScore) {
 }
 
 function playGame() {
-    rockPaperScissorsGame(1);
-    rockPaperScissorsGame(2);
-    rockPaperScissorsGame(3);
-    rockPaperScissorsGame(4);
-    rockPaperScissorsGame(5);
+    for(let round = 1; round <= 5; round++) {
+        rockPaperScissorsGame(round);
+    }
+    console.log('========');
     displayGameResult(humanScore, computerScore);
+    console.log(`FINAL SCORE - Human: ${humanScore} | CPU: ${computerScore}`);
 }
 
 playGame();
