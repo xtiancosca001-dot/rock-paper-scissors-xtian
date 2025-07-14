@@ -58,12 +58,7 @@ function displayGameResult(humanScore, cpuScore) {
 }
 
 function playGame() {
-    for(let round = 1; round <= NUM_ROUNDS; round++) {
-        rockPaperScissorsGame(round);
-    }
-    console.log('========');
-    displayGameResult(humanScore, computerScore);
-    console.log(`FINAL SCORE - Human: ${humanScore} | CPU: ${computerScore}`);
+    
 }
 
 playGame();

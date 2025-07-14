@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Montserrat, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: white;
+    background: linear-gradient(0deg, rgba(24, 250, 216, 0.3), rgba(0, 2, 11, 0.729)),url('./images/bg-rps.webp'); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: darken;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 1em;
+}
+
+.interface {
+    background-color: rgba(0, 0, 0, 0.628);
+    height: 700px;
+    width: 1000px;
+    gap: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.announcement {
+    background-color: rgba(167, 167, 167, 0.414);
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.announcement.win {
+    background-color: rgba(160, 255, 170, 0.414);
+}
+
+.announcement.lose {
+    background-color: rgba(255, 126, 126, 0.414);
+}
+
+.players {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 5.75em;
+    align-items: center;
+}
+
+.players h1 {
+    margin: 0;
+}
+
+.score {
+    font-size: 2em;
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+.player-1-choice, .player-2-choice {
+    background-color: rgba(255, 255, 255, 0.614);
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8em;
+}
+
+.choices {
+    width: 300px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.choices button {
+    flex: 1;
+    font-size: 2em;
+    width: 70px;
+    height: 70px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.667);
+    transition: background-color ease 200ms;
+}
+
+.controls button {
+    height: 40px;
+    width: 250px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.615);
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    transition: background-color ease 200ms;
+}
+
+button:hover {
+    background-color: rgba(255, 255, 255, 0.863);
+    cursor: pointer;
+}
