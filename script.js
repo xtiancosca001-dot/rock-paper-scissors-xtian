@@ -85,20 +85,27 @@ function toggleDisplays() {
     gameChoices.classList.toggle('display-none');
 }
 
-newGame.addEventListener('click', e => {
-    console.log(`RESET SCORES you: ${humanScore} and cpu: ${computerScore}`);
+function resetValues() {
     humanScore = computerScore = 0;
     playerNameInput.value = '';
     playerOneScore.textContent = cpuScore.textContent = '0';
     playerOneName.textContent = cpuName.textContent = '';
     playerOneChoice.textContent = cpuChoice.textContent = '';
     announcer.textContent = 'Enjoy the game!';
+}
+
+function resetStyles() {
     choices.classList.remove('display-none');
     announcer.classList.remove('lose');
     announcer.classList.remove('win');
     newGame.setAttribute('disabled', '');
     choiceButtons.forEach(button => button.removeAttribute('disabled'));
     toggleDisplays();
+}
+
+newGame.addEventListener('click', e => {
+    resetValues();
+    resetStyles();
 });
 
 playButton.addEventListener('click', e => {
