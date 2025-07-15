@@ -1,6 +1,5 @@
 let humanScore = 0;
 let computerScore = 0;
-const NUM_ROUNDS = 5;
 const NUM_CHOICES = 3;
 const ROCK = 'rock';
 const PAPER = 'paper';
@@ -20,46 +19,39 @@ function humanWinsTheRound(humanChoice, computerChoice) {
             (humanChoice === SCISSORS) && (computerChoice === PAPER);
 }
 
+// game elements
 const newGame = document.querySelector('#new-game');
-const player1Name = document.querySelector('.player-name');
 const playButton = document.querySelector('#play');
-const playerInput = document.querySelector('#player');
-const player1 = document.querySelector('.player-1 .name');
-const cpu = document.querySelector('.cpu .name');
 const announcer = document.querySelector('.announcement');
 
 // choices
 const choices = document.querySelector('.choices');
 const gameChoices = document.querySelector('.game-choices');
-const p1Choice = document.querySelector('.player-1-choice');
+const playerOneChoice = document.querySelector('.player-1-choice');
 const cpuChoice = document.querySelector('.player-2-choice');
 const choiceButtons = Array.from(document.querySelectorAll('.game-choices button'));
 
 // score
-const p1Score = document.querySelector('#p1-score');
+const playerOneScore = document.querySelector('#p1-score');
 const cpuScore = document.querySelector('#cpu-score');
 
-// const counter = document.querySelector('#counter');
+// players
 const playersContainer = document.querySelector('.players-container');
-// let intervalId;
-
-// const makeCounter = (start) => {
-//     return () => {
-//         if(start === 1) clearInterval(intervalId);
-//         counter.textContent = start;
-//         start--;
-//     };
-// };
-
-// const beginCountDown = () => {
-//     intervalId = setInterval(makeCounter(3), 1000);
-// };
+const playerNameContainer = document.querySelector('.player-name-container');
+const playerNameInput = document.querySelector('#player-name-input');
+const playerOneName = document.querySelector('.player-1 .name');
+const cpuName = document.querySelector('.cpu .name');
 
 function playRound(humanChoice, computerChoice) {
     const humanWin = humanWinsTheRound(humanChoice, computerChoice);
-    if(humanWin) {
+    if(humanChoice === computerChoice) {
+        announcer.textContent = 'DRAW! No one got a point!';
+    }
+    else if(humanWin) {
+        announcer.textContent = `You get a point! ${humanChoice} beats ${computerChoice}`;
         humanScore++;
     } else {
+        announcer.textContent = `CPU gets a point! ${computerChoice} beats ${humanChoice}`;
         computerScore++;
     }
 }
@@ -80,7 +72,7 @@ function rockPaperScissorsGame(humanChoice) {
     const selections = {rock: '🪨', paper: '📜', scissors: '✂'};
 
     const humanSelection = humanChoice.toLowerCase();
-    p1Choice.textContent = selections[humanSelection];
+    playerOneChoice.textContent = selections[humanSelection];
 
     const computerSelection = getComputerChoice();
     cpuChoice.textContent = selections[computerSelection];
@@ -88,29 +80,18 @@ function rockPaperScissorsGame(humanChoice) {
     playRound(humanSelection, computerSelection);
 }
 
-gameChoices.addEventListener('click', e => {
-    announcer.textContent = 'First to get 5 points wins the game.';
-    rockPaperScissorsGame(e.target.id);
-    p1Score.textContent = humanScore;
-    cpuScore.textContent = computerScore;    
-    if (humanScore === 5 || computerScore === 5) {
-        choiceButtons.forEach(button => button.setAttribute('disabled',''));
-        displayGameResult(humanScore,computerScore);
-    }
-});
-
 function toggleDisplays() {
-    player1Name.classList.toggle('display-none');
+    playerNameContainer.classList.toggle('display-none');
     gameChoices.classList.toggle('display-none');
 }
 
 newGame.addEventListener('click', e => {
     console.log(`RESET SCORES you: ${humanScore} and cpu: ${computerScore}`);
     humanScore = computerScore = 0;
-    playerInput.value = '';
-    p1Score.textContent = cpuScore.textContent = '0';
-    player1.textContent = cpu.textContent = '';
-    p1Choice.textContent = cpuChoice.textContent = '';
+    playerNameInput.value = '';
+    playerOneScore.textContent = cpuScore.textContent = '0';
+    playerOneName.textContent = cpuName.textContent = '';
+    playerOneChoice.textContent = cpuChoice.textContent = '';
     announcer.textContent = 'Enjoy the game!';
     choices.classList.remove('display-none');
     announcer.classList.remove('lose');
@@ -122,12 +103,22 @@ newGame.addEventListener('click', e => {
 
 playButton.addEventListener('click', e => {
     console.log('pressed');
-    if(playerInput.value) {
+    if(playerNameInput.value) {
         toggleDisplays();
-        player1.textContent = playerInput.value;
-        cpu.textContent = 'CPU';
+        playerOneName.textContent = playerNameInput.value;
+        cpuName.textContent = 'CPU';
         announcer.textContent = 'Please choose one from the selections before the game starts.';
         newGame.removeAttribute('disabled');
+    }
+});
+
+gameChoices.addEventListener('click', e => {
+    rockPaperScissorsGame(e.target.id);
+    playerOneScore.textContent = humanScore;
+    cpuScore.textContent = computerScore;    
+    if (humanScore === 5 || computerScore === 5) {
+        choiceButtons.forEach(button => button.setAttribute('disabled',''));
+        displayGameResult(humanScore,computerScore);
     }
 });
 
