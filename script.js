@@ -14,47 +14,10 @@ function getComputerChoice() {
            SCISSORS;
 }
 
-function getHumanChoice() { 
-    return prompt('Enter your choice (rock, paper, scissors only): ');
-}
-
 function humanWinsTheRound(humanChoice, computerChoice) {
     return  (humanChoice === ROCK) && (computerChoice === SCISSORS) ||
             (humanChoice === PAPER) && (computerChoice === ROCK) ||
             (humanChoice === SCISSORS) && (computerChoice === PAPER);
-}
-
-function playRound(humanChoice, computerChoice) {
-    const humanWin = humanWinsTheRound(humanChoice, computerChoice);
-    if(humanChoice === computerChoice) {
-        console.log('DRAW');
-    } else if(humanWin) {
-        console.log(`You Win! ${humanChoice} beats ${computerChoice}`);
-        humanScore++;
-    } else {
-        console.log(`You Lose! ${computerChoice} beats ${humanChoice}`);
-        computerScore++;
-    }
-}
-
-function rockPaperScissorsGame(roundNumber) {
-    const humanSelection = getHumanChoice().toLowerCase();
-    const computerSelection = getComputerChoice();
-
-    console.log(`==ROUND ${roundNumber}==`);
-    console.log(`${humanSelection} VS ${computerSelection}`);
-    playRound(humanSelection, computerSelection);
-    console.log(`SCORE (R${roundNumber}) - Human: ${humanScore} | CPU: ${computerScore}`);
-}
-
-function displayGameResult(humanScore, cpuScore) {
-    if(humanScore === cpuScore) {
-        console.log('The Game is a DRAW!');
-    } else if(humanScore < cpuScore) {
-        console.log('Computer Wins the game!');
-    } else {
-        console.log('Congrats! You win the game!');
-    }
 }
 
 const newGame = document.querySelector('#new-game');
@@ -64,8 +27,17 @@ const playerInput = document.querySelector('#player');
 const player1 = document.querySelector('.player-1 .name');
 const cpu = document.querySelector('.cpu .name');
 const announcer = document.querySelector('.announcement');
+
+// choices
 const choices = document.querySelector('.choices');
 const gameChoices = document.querySelector('.game-choices');
+const p1Choice = document.querySelector('.player-1-choice');
+const cpuChoice = document.querySelector('.player-2-choice');
+
+// score
+const p1Score = document.querySelector('#p1-score');
+const cpuScore = document.querySelector('#cpu-score');
+
 
 function toggleDisplays() {
     player1Name.classList.toggle('display-none');
@@ -73,11 +45,14 @@ function toggleDisplays() {
 }
 
 newGame.addEventListener('click', e => {
-    humanScore = computerScore = 0;
+    humanScore = 0; computerScore = 0;
     playerInput.value = '';
-    player1.textContent = ''; cpu.textContent = '';
+    p1Score.textContent = cpu.cpuScore = '0';
+    p1Choice.textContent = cpuChoice.textContent = '';
     announcer.textContent = 'Enjoy the game!';
     choices.classList.remove('display-none');
+    announcer.classList.remove('lose');
+    announcer.classList.remove('win');
     newGame.setAttribute('disabled', '');
     toggleDisplays();
 });
@@ -92,3 +67,68 @@ playButton.addEventListener('click', e => {
         newGame.removeAttribute('disabled');
     }
 });
+
+// const counter = document.querySelector('#counter');
+const playersContainer = document.querySelector('.players-container');
+// let intervalId;
+
+// const makeCounter = (start) => {
+//     return () => {
+//         if(start === 1) clearInterval(intervalId);
+//         counter.textContent = start;
+//         start--;
+//     };
+// };
+
+// const beginCountDown = () => {
+//     intervalId = setInterval(makeCounter(3), 1000);
+// };
+
+function playRound(humanChoice, computerChoice) {
+    const humanWin = humanWinsTheRound(humanChoice, computerChoice);
+    if(humanWin) {
+        humanScore++;
+    } else {
+        computerScore++;
+    }
+}
+
+function displayGameResult(humanScore, cpuScore) {
+    if(humanScore === cpuScore) {
+        announcer.textContent = 'The Game is a DRAW!';
+    } else if(humanScore < cpuScore) {
+        announcer.textContent = 'Computer Wins the game!';
+        announcer.classList.toggle('lose');
+    } else {
+        announcer.textContent = 'Congrats! You win the game!';
+        announcer.classList.toggle('win');
+    }
+}
+
+function rockPaperScissorsGame(humanChoice) {
+    const selections = {rock: '🪨', paper: '📜', scissors: '✂'};
+
+    const humanSelection = humanChoice.toLowerCase();
+    p1Choice.textContent = selections[humanSelection];
+
+    const computerSelection = getComputerChoice();
+    cpuChoice.textContent = selections[computerSelection];
+
+    playRound(humanSelection, computerSelection);
+}
+
+gameChoices.addEventListener('click', e => {
+    console.log(e.target.id);
+    rockPaperScissorsGame(e.target.id);
+    p1Score.textContent = humanScore;
+    cpuScore.textContent = computerScore;    
+    if (humanScore === 5 || computerScore === 5) {
+        const choiceButtons = Array.from(document.querySelectorAll('.game-choices button'));
+        choiceButtons.forEach(button => button.setAttribute('disabled',''));
+        displayGameResult(humanScore,computerScore);
+    }
+});
+
+
+
+
