@@ -65,6 +65,7 @@ const player1 = document.querySelector('.player-1 .name');
 const cpu = document.querySelector('.cpu .name');
 const announcer = document.querySelector('.announcement');
 const choices = document.querySelector('.choices');
+const gameChoices = document.querySelector('.game-choices');
 
 function toggleDisplays() {
     player1Name.classList.toggle('display-none');
@@ -81,7 +82,7 @@ newGame.addEventListener('click', e => {
 });
 
 playButton.addEventListener('click', e => {
-    console.log('pressed')
+    console.log('pressed');
     if(playerInput.value) {
         toggleDisplays();
         player1.textContent = playerInput.value;
