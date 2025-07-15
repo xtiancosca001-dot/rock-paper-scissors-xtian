@@ -33,40 +33,11 @@ const choices = document.querySelector('.choices');
 const gameChoices = document.querySelector('.game-choices');
 const p1Choice = document.querySelector('.player-1-choice');
 const cpuChoice = document.querySelector('.player-2-choice');
+const choiceButtons = Array.from(document.querySelectorAll('.game-choices button'));
 
 // score
 const p1Score = document.querySelector('#p1-score');
 const cpuScore = document.querySelector('#cpu-score');
-
-
-function toggleDisplays() {
-    player1Name.classList.toggle('display-none');
-    gameChoices.classList.toggle('display-none');
-}
-
-newGame.addEventListener('click', e => {
-    humanScore = 0; computerScore = 0;
-    playerInput.value = '';
-    p1Score.textContent = cpu.cpuScore = '0';
-    p1Choice.textContent = cpuChoice.textContent = '';
-    announcer.textContent = 'Enjoy the game!';
-    choices.classList.remove('display-none');
-    announcer.classList.remove('lose');
-    announcer.classList.remove('win');
-    newGame.setAttribute('disabled', '');
-    toggleDisplays();
-});
-
-playButton.addEventListener('click', e => {
-    console.log('pressed');
-    if(playerInput.value) {
-        toggleDisplays();
-        player1.textContent = playerInput.value;
-        cpu.textContent = 'CPU';
-        announcer.textContent = 'Please choose one from the selections before the game starts.'
-        newGame.removeAttribute('disabled');
-    }
-});
 
 // const counter = document.querySelector('#counter');
 const playersContainer = document.querySelector('.players-container');
@@ -118,17 +89,47 @@ function rockPaperScissorsGame(humanChoice) {
 }
 
 gameChoices.addEventListener('click', e => {
-    console.log(e.target.id);
+    announcer.textContent = 'First to get 5 points wins the game.';
     rockPaperScissorsGame(e.target.id);
     p1Score.textContent = humanScore;
     cpuScore.textContent = computerScore;    
     if (humanScore === 5 || computerScore === 5) {
-        const choiceButtons = Array.from(document.querySelectorAll('.game-choices button'));
         choiceButtons.forEach(button => button.setAttribute('disabled',''));
         displayGameResult(humanScore,computerScore);
     }
 });
 
+function toggleDisplays() {
+    player1Name.classList.toggle('display-none');
+    gameChoices.classList.toggle('display-none');
+}
+
+newGame.addEventListener('click', e => {
+    console.log(`RESET SCORES you: ${humanScore} and cpu: ${computerScore}`);
+    humanScore = computerScore = 0;
+    playerInput.value = '';
+    p1Score.textContent = cpuScore.textContent = '0';
+    player1.textContent = cpu.textContent = '';
+    p1Choice.textContent = cpuChoice.textContent = '';
+    announcer.textContent = 'Enjoy the game!';
+    choices.classList.remove('display-none');
+    announcer.classList.remove('lose');
+    announcer.classList.remove('win');
+    newGame.setAttribute('disabled', '');
+    choiceButtons.forEach(button => button.removeAttribute('disabled'));
+    toggleDisplays();
+});
+
+playButton.addEventListener('click', e => {
+    console.log('pressed');
+    if(playerInput.value) {
+        toggleDisplays();
+        player1.textContent = playerInput.value;
+        cpu.textContent = 'CPU';
+        announcer.textContent = 'Please choose one from the selections before the game starts.';
+        newGame.removeAttribute('disabled');
+    }
+});
 
 
 
