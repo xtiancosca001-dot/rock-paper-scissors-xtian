@@ -28,14 +28,24 @@
                 <h1>VS</h1>
                 <!-- CPU -->
                 <div class="cpu">
-                    <h2 class="cpu"></h2>
+                    <h2 class="name"></h2>
                     <div class="player-2-choice">📜</div>
                 </div>
             </div>
-            <div class="choices">
-                <button id="rock">🪨</button>
-                <button id="paper">📜</button>
-                <button id="scissors">✂</button>
+            <div class="choices display-none">
+                <div class="player-name display-none">
+                    <p>Please enter you name: </p>
+                    <div class="name-container">
+                        <input id='player' type="text" name="player-1" placeholder="player" />
+                        <button id="play">PLAY</button>
+                    </div>
+                </div>
+                <div class="game-choices">
+                    <button id="rock">🪨</button>
+                    <button id="paper">📜</button>
+                    <button id="scissors">✂</button>
+                </div>
+                
             </div>
             <div class="controls">
                 <button id="new-game">New Game</button>
