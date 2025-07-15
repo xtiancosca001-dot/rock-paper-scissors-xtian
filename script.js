@@ -57,8 +57,35 @@ function displayGameResult(humanScore, cpuScore) {
     }
 }
 
-function playGame() {
-    
+const newGame = document.querySelector('#new-game');
+const player1Name = document.querySelector('.player-name');
+const playButton = document.querySelector('#play');
+const playerInput = document.querySelector('#player');
+const player1 = document.querySelector('.player-1 .name');
+const cpu = document.querySelector('.cpu .name');
+const announcer = document.querySelector('.announcement');
+const choices = document.querySelector('.choices');
+
+function toggleDisplays() {
+    player1Name.classList.toggle('display-none');
+    gameChoices.classList.toggle('display-none');
 }
 
-playGame();
+newGame.addEventListener('click', e => {
+    humanScore = computerScore = 0;
+    playerInput.value = '';
+    player1.textContent = ''; cpu.textContent = '';
+    announcer.textContent = 'Enjoy the game!';
+    choices.classList.remove('display-none');
+    toggleDisplays();
+});
+
+playButton.addEventListener('click', e => {
+    console.log('pressed')
+    if(playerInput.value) {
+        toggleDisplays();
+        player1.textContent = playerInput.value;
+        cpu.textContent = 'CPU';
+        announcer.textContent = 'Please choose one from the selections before the game starts.'
+    }
+});
