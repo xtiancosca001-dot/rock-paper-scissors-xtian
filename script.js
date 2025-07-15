@@ -109,7 +109,6 @@ newGame.addEventListener('click', e => {
 });
 
 playButton.addEventListener('click', e => {
-    console.log('pressed');
     if(playerNameInput.value) {
         toggleDisplays();
         playerOneName.textContent = playerNameInput.value;
