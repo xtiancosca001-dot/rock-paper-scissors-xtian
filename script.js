@@ -78,6 +78,7 @@ newGame.addEventListener('click', e => {
     player1.textContent = ''; cpu.textContent = '';
     announcer.textContent = 'Enjoy the game!';
     choices.classList.remove('display-none');
+    newGame.setAttribute('disabled', '');
     toggleDisplays();
 });
 
@@ -88,5 +89,6 @@ playButton.addEventListener('click', e => {
         player1.textContent = playerInput.value;
         cpu.textContent = 'CPU';
         announcer.textContent = 'Please choose one from the selections before the game starts.'
+        newGame.removeAttribute('disabled');
     }
 });
